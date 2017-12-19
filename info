@@ -1,0 +1,22 @@
+TO RUN FRONT END
+
+
+cd front
+npm i && bower i
+gulp serve
+
+---------------------------------
+TO RUN BACK END
+
+
+cd back
+npm i 
+nodemon .
+
+
+-----------------------------------
+
+JWT TOKEN USED for authentication
+angular generator from yeoman generator 
+
+visit todo.greyphase.xyz for live

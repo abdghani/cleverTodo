@@ -1,0 +1,30 @@
+<form name="signin" ng-submit="funcs.signin()">
+  <dd class="uk-text-meta uk-text-info" style="margin-top: 8px;" ng-show="state.current.name == 'login'"> Use the credentials sent to your email and phone to login</dd>
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <span class="uk-form-icon" uk-icon="icon: user"></span>
+      <input class="uk-input" type="text" placeholder="Username" ng-model="obj.input.username" required>
+    </div>
+  </div>
+  <div class="uk-margin">
+    <div class="uk-inline">
+      <span class="uk-form-icon" uk-icon="icon: lock"></span>
+      <input class="uk-input" type="password" placeholder="Password" ng-model="obj.input.password" required>
+    </div>
+  </div>
+  <div class="uk-margin">
+    <div class="uk-form-row">
+      <button ng-disabled="signin.$invalid"  class="uk-width-1-3 uk-button uk-button-primary" type="submit">
+        <span ng-hide="load.signin">Sign In</span>
+        <span uk-spinner ng-show="load.signin"></span>
+      </button>
+    </div>
+    <div class="align-center">
+      <dd class="uk-text-meta uk-text-danger" style="margin-top: 8px;" ng-show="show.loginErrorMessage">! Login failed, try again.</dd>
+      <br>
+      <span ng-show="obj.errLogin">
+          <h5 style="color:red">Invalid Username or Password</h5>
+      </span>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,157 @@
+<div class="uk-container uk-margin" ng-init="funcs.loadAllTodos()">
+
+  <nav class="uk-navbar-container uk-margin" uk-navbar>
+      <div class="uk-navbar-left">
+
+          <a class="uk-navbar-item uk-logo" ui-sref="user">
+            <img src="https://www.clevero.com/img/logo.png" > &nbsp; CLEVERO
+          </a>
+
+          <ul class="uk-navbar-nav">
+              <li>
+                  <a>
+                      <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
+                      Home
+                  </a>
+              </li>
+          </ul>
+          <div class="uk-navbar-item">
+              <form action="javascript:void(0)">
+                  <input class="uk-input uk-form-width-large marg-l-50" type="text" placeholder="SearchTodos" ng-model="filterQuery">
+              </form>
+          </div>
+      </div>
+      <div class="uk-navbar-right ">
+        <button class="uk-button uk-button-default marg-r-20" uk-toggle="target: #modal-addTask">
+          <span class="uk-icon " uk-icon="icon: plus;ratio: 0.6"></span>
+          ADD
+        </button>
+        <button class="uk-button uk-button-default marg-r-20" ui-sref="user">
+          <span class="uk-icon " uk-icon="icon: lock;ratio: 0.6"></span>
+          LOGOUT
+        </button>
+      </div>
+  </nav>
+
+  <div uk-grid>
+    <div class="uk-width-1-5@m">
+      <div class="uk-card uk-card-default uk-card-body">
+        <h4 class="uk-text-center">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: tag;ratio: 1.5" ></span>
+          Filter
+        </h4>
+        <hr>
+        <div class="" >
+            <a class="" ng-class={'uk-badge':obj.filterSelection=='all'} ng-click="funcs.changeFilter('all')" style="text-decoration:none">
+              ALL TODOS
+            </a>
+            <hr>
+            <a class="" ng-class={'uk-badge':obj.filterSelection=='today'} ng-click="funcs.changeFilter('today')" style="text-decoration:none">
+              TODAY
+            </a>
+            <hr>
+            <a class="" ng-class={'uk-badge':obj.filterSelection=='week'} ng-click="funcs.changeFilter('week')" style="text-decoration:none">
+              WEEK
+            </a>
+            <hr>
+            <a class="" ng-class={'uk-badge':obj.filterSelection=='month'} ng-click="funcs.changeFilter('month')" style="text-decoration:none">
+              MONTH
+            </a>
+            <hr>
+            <a class="" ng-class={'uk-badge':obj.filterSelection=='year'} ng-click="funcs.changeFilter('year')" style="text-decoration:none">
+              YEAR
+            </a>
+            <hr>
+        </div>
+      </div>
+    </div>
+    <!-- All todos section -->
+    <div class="uk-width-3-5@m">
+      <div class="uk-card uk-card-default uk-card-body wrap" ng-init="funcs.loadAllTodos()">
+        <h4 class="uk-text-center">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon:  calendar;ratio: 1.5" ></span>
+          ALL TODOS
+        </h4>
+        <hr>
+        <div class="" ng-if="obj.todos.length >0">
+            <ul class="uk-list uk-list-divider">
+              <li ng-repeat="todo in obj.todos| filter:filterQuery" class="over">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  triangle-right;ratio: 2.5" style="color:#42f4a7" ng-if="todo.completed=='1'"></span>
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  triangle-right;ratio: 2.5" style="color:red" ng-if="todo.completed=='0'"></span>
+                <span ng-bind="todo.content"></span>
+                <button class="uk-button uk-button-default uk-align-right" ng-if="todo.completed=='0'" ng-click="funcs.changeStatus(todo,$index)">Done
+                  <span class="uk-icon uk-margin-small-right" uk-icon="icon:  check"></span>
+                </button>
+              </li>
+            </ul>
+        </div>
+        <div class="" ng-if="obj.finalTodos.length ==0">
+          <h5>
+            No Todo Availble
+          </h5>
+          <button class="uk-button uk-button-default marg-r-20" uk-toggle="target: #modal-addTask">
+            <span class="uk-icon " uk-icon="icon: plus;ratio: 0.6"></span>
+            ADD NOW
+          </button>
+        </div>
+        <div class="" ng-if="obj.todos.length ==0">
+          <i>
+            Empty
+          </i>
+        </div>
+      </div>
+    </div>
+
+    <!-- completed section -->
+    <div class="uk-width-1-5@m">
+      <div class="uk-card uk-card-default uk-card-body" ng-init="funcs.loadAllTodos()">
+        <h4 class="uk-text-center">
+          <span class="uk-icon uk-margin-small-right" uk-icon="icon: check;ratio: 1.5" ></span>
+          Done
+        </h4>
+        <hr>
+        <div class="" ng-if="obj.finalTodos.length >0">
+            <ul class="uk-list uk-list-divider">
+              <li ng-repeat="todo in obj.finalTodos" class="over" ng-show="todo.completed=='1'">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: chevron-right;ratio: 0.7" ></span>
+                <span ng-bind="todo.content"></span>
+              </li>
+            </ul>
+        </div>
+        <div class="" ng-if="obj.finalTodos.length ==0">
+          <i>empty</i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- Add todo Modal -->
+<div id="modal-addTask" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+      <form class="uk-form" ng-submit="funcs.addTodo()">
+        <h2 class="uk-modal-title">ADD TODO</h2>
+        <hr>
+        <div class="uk-margin">
+          <label for=""> TASK </label>
+           <input class="uk-input uk-form-width-large uk-form-large" type="text" placeholder="Task" ng-model="obj.addTodo.content">
+        </div>
+        <label for=""> DUE DATE</label>
+        <div class="uk-margin">
+          <input class="uk-input uk-form-width-large uk-form-large" type="date" id="datePicker" placeholder="Due Date" ng-model="obj.addTodo.dueDate">
+        </div>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+            <button class="uk-button uk-button-primary" type="submit">Save
+              <span uk-spinner ng-show="obj.addTodoLoad"></span>
+            </button>
+        </p>
+        <p style="color:red" ng-bind="obj.addTodoErrorMsg" ng-show="obj.addTodoError"></p>
+        <p style="color:green" ng-bind="obj.addTodoSuccessMsg" ng-show="obj.addTodoSuccess"></p>
+      </form>
+    </div>
+</div>

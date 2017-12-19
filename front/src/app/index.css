@@ -1,0 +1,12 @@
+.wrap{
+   overflow-wrap: break-word;
+}
+.marg-l-20{
+margin-left: 20px;
+}
+.marg-l-50{
+margin-left: 50px;
+}
+.marg-r-20{
+margin-right:  30px !important;
+}
