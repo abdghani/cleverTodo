@@ -1,5 +1,5 @@
 (function() {
-  // 'use strict';
+  'use strict';
 
   angular
     .module('front')
@@ -8,13 +8,14 @@
   GatewayService.$inject = ['$log', '$q', '$cookies', '$http'];
   /** @ngInject */
   function GatewayService($log, $q, $cookies, $http) {
-    var baseUrl = "http://localhost:4010"
+    var baseUrl = "http://localhost:4010";
     return {
-      login: function(data) {
+      signup: function(data) {
         var promise = $q.defer();
-        var baseURL = baseUrl + '/api/users/login';
+        var baseURL = baseUrl + '/api/users/create';
         var requestData = {
           "username": data.username,
+          "email": data.email,
           "password": data.password
         }
         var headers = {
@@ -32,12 +33,11 @@
           });
         return promise.promise;
       },
-      signup: function(data) {
+      login: function(data) {
         var promise = $q.defer();
-        var baseURL = baseUrl + '/api/users/create';
+        var baseURL = baseUrl + '/api/users/login';
         var requestData = {
           "username": data.username,
-          "email": data.email,
           "password": data.password
         }
         var headers = {
@@ -148,7 +148,6 @@
           });
         return promise.promise;
       }
-
-    }
-  }
-})()
+    };
+  };
+})();
