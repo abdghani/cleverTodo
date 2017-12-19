@@ -6,7 +6,6 @@
     .controller('UserController', UserController);
 
   function UserController($state, $cookies, $scope, $timeout, webDevTec, toastr, GatewayService) {
-    console.log("---");
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
     $scope.obj = {};
@@ -16,7 +15,6 @@
     $scope.obj.default = 'login'
 
     $scope.goTo = function(goTo) {
-      console.log(localStorage.getItem('userId'));
       $state.go(goTo, {
         userId: localStorage.getItem('userId')
       });

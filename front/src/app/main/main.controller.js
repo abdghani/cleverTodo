@@ -31,7 +31,7 @@
     $scope.funcs = {};
     $scope.obj.addTodo = {}
 
-    $scope.obj.filterSelection = "today";
+    $scope.obj.filterSelection = "all";
 
     //add a todo
     $scope.funcs.addTodo = function() {
