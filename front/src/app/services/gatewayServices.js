@@ -8,7 +8,7 @@
   GatewayService.$inject = ['$log', '$q', '$cookies', '$http'];
   /** @ngInject */
   function GatewayService($log, $q, $cookies, $http) {
-    var baseUrl = "http://localhost:4000"
+    var baseUrl = "http://localhost:4010"
     return {
       login: function(data) {
         var promise = $q.defer();
