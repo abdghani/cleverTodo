@@ -8,7 +8,7 @@
   GatewayService.$inject = ['$log', '$q', '$cookies', '$http'];
   /** @ngInject */
   function GatewayService($log, $q, $cookies, $http) {
-    var baseUrl = "http://localhost:4010";
+    var baseUrl = "http://api.todos.greyphase.xyz";
     return {
       signup: function(data) {
         var promise = $q.defer();
