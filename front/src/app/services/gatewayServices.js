@@ -55,28 +55,6 @@
           });
         return promise.promise;
       },
-      login: function(data) {
-        var promise = $q.defer();
-        var baseURL = baseUrl + '/api/users/login';
-        var requestData = {
-          "username": data.username,
-          "password": data.password
-        }
-        var headers = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-        $http.post(baseURL, requestData)
-          .then(function(result) {
-            $log.debug('Created object, ', result);
-            promise.resolve(result);
-          }, function(result) {
-            $log.debug("Failed to create object:", result);
-            promise.reject(result);
-          });
-        return promise.promise;
-      },
       checkLogin: function(data) {
         console.log(localStorage.getItem('token'));
         var promise = $q.defer();
